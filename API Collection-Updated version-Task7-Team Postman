@@ -1,0 +1,629 @@
+{
+	"info": {
+		"_postman_id": "0ea66e11-0e63-40d4-adcb-07156d52d221",
+		"name": "API Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24235851"
+	},
+	"item": [
+		{
+			"name": "Get All Todo Entries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{DemoUrl}}/index.php/todo",
+					"host": [
+						"{{DemoUrl}}"
+					],
+					"path": [
+						"index.php",
+						"todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Entries",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code should be 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Status code should have OK string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							" var jsonData = pm.response.json();\r",
+							"   console.log (jsonData.apiVersion)\r",
+							"console.log (jsonData.title)\r",
+							"console.log (jsonData.paymentCurrency)\r",
+							"console.log (jsonData.categories)\r",
+							"console.log (jsonData.scopes)\r",
+							"console.log (jsonData.links)\r",
+							" console.log (jsonData.links[0].rel)\r",
+							"console.log (jsonData.links[0].href)\r",
+							" console.log (jsonData.links[1].rel)\r",
+							"console.log (jsonData.links[1].href)\r",
+							" console.log (jsonData.links[2].rel)\r",
+							"console.log (jsonData.links[2].href)\r",
+							"console.log (jsonData.links[3].rel)\r",
+							"console.log (jsonData.links[3].href)\r",
+							"console.log (jsonData.links[4].rel)\r",
+							"console.log (jsonData.links[4].href)\r",
+							"console.log (jsonData.links[5].rel)\r",
+							"console.log (jsonData.links[5].href)\r",
+							"console.log (jsonData.links[6].rel)\r",
+							"console.log (jsonData.links[6].href)\r",
+							"console.log (jsonData.links[7].rel)\r",
+							"console.log (jsonData.links[7].href)\r",
+							"console.log (jsonData.links[8].rel)\r",
+							"console.log (jsonData.links[8].href)\r",
+							"  console.log (jsonData.apps)\r",
+							"  \r",
+							"\r",
+							"\r",
+							"\r",
+							" pm.test(\"Confirm that the version is 6.3.8.0\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.apiVersion).to.eql(\"6.3.8.0\");\r",
+							"})\r",
+							" pm.test(\"Confirm that the title is Fusio\", function () {\r",
+							"\r",
+							"    pm.expect(jsonData.title).to.eql(\"Fusio\");\r",
+							"   }); \r",
+							"   \r",
+							"     pm.test(\"Confirm that the paymentCurrency is EUR\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.paymentCurrency).to.eql(\"EUR\");\r",
+							"\r",
+							"});\r",
+							"pm.test(\"Confirm that  authorization\",\r",
+							"        \"system\",\r",
+							"        \"consumer\",\r",
+							"        \"backend\",\r",
+							"        \"default are all under categories \", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.categories).to.eql(\"authorization\",\r",
+							"        \"system\",\r",
+							"        \"consumer\",\r",
+							"        \"backend\",\r",
+							"        \"default\");\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Confirm that the apps contains \", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.scopes).to.eql([\"default\"]);\r",
+							"\r",
+							"});\r",
+							"   \r",
+							" pm.test(\"confirm that link.0. rel contains root\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.links[0].rel).to.eql(\"root\");\r",
+							"})\r",
+							"pm.test(\"confirm that link 0. href contains https://demo.fusio-project.org/\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.links[0].href).to.eql(\"https://demo.fusio-project.org/\");\r",
+							"})\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"confirm that link.1. rel contains openapi\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.links[1].rel).to.eql(\"openapi\");\r",
+							"    })\r",
+							"pm.test(\"confirm that link 1. href contains https://demo.fusio-project.org/system/export/openapi/*/*\", function () {\r",
+							"    \r",
+							" pm.expect(jsonData.links[1].href).to.eql(\"https://demo.fusio-project.org/system/export/openapi/*/*\");\r",
+							"})\r",
+							"\r",
+							"pm.test(\"confirm that link 2 rel contains documentation\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.links[2].rel).to.eql(\"documentation\");\r",
+							"})\r",
+							"pm.test(\"confirm that link 2 . href contains https://demo.fusio-project.org/system/doc\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.links[2].href).to.eql(\"https://demo.fusio-project.org/system/doc\");\r",
+							"})\r",
+							"\r",
+							"pm.test(\"confirm that link 3 rel contains route\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.links[3].rel).to.eql(\"route\");\r",
+							"})\r",
+							"\r",
+							"pm.test(\"confirm that link 3 . href contains https://demo.fusio-project.org/system/route\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.links[3].href).to.eql(\"https://demo.fusio-project.org/system/route\");\r",
+							"})\r",
+							"\r",
+							"pm.test(\"confirm that link 4 rel contains health\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.links[4].rel).to.eql(\"health\");\r",
+							"})\r",
+							"pm.test(\"confirm that link 4 . href contains https://demo.fusio-project.org/system/health\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.links[4].href).to.eql(\"https://demo.fusio-project.org/system/health\");\r",
+							"})\r",
+							"\r",
+							"pm.test(\"confirm that link 5 rel contains jsonrpc\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.links[5].rel).to.eql(\"jsonrpc\");\r",
+							"})\r",
+							"pm.test(\"confirm that link 4 . href contains https://demo.fusio-project.org/system/jsonrpc\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.links[5].href).to.eql(\"https://demo.fusio-project.org/system/jsonrpc\");\r",
+							"})\r",
+							"\r",
+							"pm.test(\"confirm that link 6 rel contains oauth2\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.links[6].rel).to.eql(\"oauth2\");\r",
+							"})\r",
+							"pm.test(\"confirm that link 6 . href contains https://demo.fusio-project.org/authorization/token\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.links[6].href).to.eql(\"https://demo.fusio-project.org/authorization/token\");\r",
+							"})\r",
+							"\r",
+							"pm.test(\"confirm that link 7 rel contains whoami\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.links[7].rel).to.eql(\"whoami\");\r",
+							"})\r",
+							"pm.test(\"confirm that link 7 . href contains https://demo.fusio-project.org/authorization/whoami\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.links[7].href).to.eql(\"https://demo.fusio-project.org/authorization/whoami\");\r",
+							"})\r",
+							"\r",
+							"pm.test(\"confirm that link 8 rel contains about\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.links[8].rel).to.eql(\"about\");\r",
+							"})\r",
+							"pm.test(\"confirm that link 8 . href contains https://www.fusio-project.org\", function () {\r",
+							"    \r",
+							"    pm.expect(jsonData.links[8].href).to.eql(\"https://www.fusio-project.org\");\r",
+							"})\r",
+							" \r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{DemoUrl}}/index.php/",
+					"host": [
+						"{{DemoUrl}}"
+					],
+					"path": [
+						"index.php",
+						""
+					]
+				},
+				"description": "https://demo.fusio-project.org/index.php/"
+			},
+			"response": []
+		},
+		{
+			"name": "Get entry per ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{DemoUrl}}/todo/?todo_id=2",
+					"host": [
+						"{{DemoUrl}}"
+					],
+					"path": [
+						"todo",
+						""
+					],
+					"query": [
+						{
+							"key": "todo_id",
+							"value": "2"
+						}
+					]
+				},
+				"description": "https://demo.fusio-project.org/index.php/todo/:todo_id"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"const response = pm.response.json();\r",
+							"// print any kind of variables/message on the screen\r",
+							"console.log(response[2].name);\r",
+							"pm.test(\"Search for a book name called Viscount Who Loved Me\", function (){\r",
+							"    pm.expect(response[3].name).to.eql(\"Viscount Who Loved Me\")\r",
+							"});\r",
+							"\r",
+							"/*const Fiction = response.filter((book) => book.type === \"fiction\");\r",
+							"console.log(Fiction)\r",
+							"//Print out the id of a fiction book that is available called \"The Midnight Library\"*/\r",
+							"\r",
+							"const Fiction = response.filter((book) => book.type === \"fiction\" && book.available === true && book.name === \"Viscount Who Loved Me\")\r",
+							"\r",
+							"console.log(Fiction[0].id);\r",
+							"\r",
+							"pm.test(\"The id number of a fiction book that available with the name The Midnight Library is \" , function () {\r",
+							"    pm.expect(Fiction[0].name).eql(\"Viscount Who Loved Me\")\r",
+							"});\r",
+							"\r",
+							"pm.globals.set(\"bookId\", Fiction[0].id);\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/books?type=fiction",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"books"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "fiction"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Place a book order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const OrderId = pm.response.json();\r",
+							"\r",
+							"console.log(OrderId.orderId);\r",
+							"pm.globals.set(\"OrderId\", OrderId.orderId);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"bookId\": 4,\n  \"customerName\": \"{{$randomFullName}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/orders",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Place a book order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"const OrderId = pm.response.json();\r",
+							"\r",
+							"console.log(OrderId.orderId);\r",
+							"pm.globals.set(\"OrderId\", OrderId.orderId);\r",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "03c5abfe090876ab74a2a2ac4c079174a35fd88c9b88cd2164ff4b9d56c31d6c",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"bookId\": 1,\n  \"customerName\": \"John\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://simple-books-api.glitch.me/orders",
+					"protocol": "https",
+					"host": [
+						"simple-books-api",
+						"glitch",
+						"me"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an order",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"customerName\": \"John\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/orders/:orderId",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"orders",
+						":orderId"
+					],
+					"variable": [
+						{
+							"key": "orderId",
+							"value": "bIMB65M6eqtT1hrND5QoH"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string OK\", function () {\r",
+							"    pm.response.to.have.status(\"No Content\");\r",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "03c5abfe090876ab74a2a2ac4c079174a35fd88c9b88cd2164ff4b9d56c31d6c",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://simple-books-api.glitch.me/orders/:orderId",
+					"protocol": "https",
+					"host": [
+						"simple-books-api",
+						"glitch",
+						"me"
+					],
+					"path": [
+						"orders",
+						":orderId"
+					],
+					"variable": [
+						{
+							"key": "orderId",
+							"value": "bl8ZbxUCq59bH8DyYWvjo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all orders",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/orders",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API Client",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"clientName\":\"John\",\r\n\"clientEmail\":\"john@gmail.com\"\r\n\r\n}\r\n\r\n    ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/api-clients",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"api-clients"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "DemoUrl",
+			"value": "https://demo.fusio-project.org"
+		},
+		{
+			"key": "BaseUrl",
+			"value": "https://simple-books-api.glitch.me"
+		},
+		{
+			"key": "Token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
