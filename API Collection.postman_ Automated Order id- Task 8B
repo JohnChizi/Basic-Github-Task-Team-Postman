@@ -1,0 +1,1198 @@
+{
+	"info": {
+		"_postman_id": "88b32b57-a37f-471e-b3eb-7b667be84860",
+		"name": "API Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24235851"
+	},
+	"item": [
+		{
+			"name": "Get All Todo Entries",
+			"item": [
+				{
+					"name": "get All Todo Entries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlDemo}}/index.php/todo",
+							"host": [
+								"{{baseUrlDemo}}"
+							],
+							"path": [
+								"index.php",
+								"todo"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get All Entries",
+			"item": [
+				{
+					"name": "Get All Entries",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									" console.log (jsonData.links[2].rel)\r",
+									" console.log (jsonData.links[4].rel)\r",
+									" console.log (jsonData.links[5].rel)\r",
+									" console.log (jsonData.links[6].rel)\r",
+									" console.log (jsonData.links[7].rel)\r",
+									" console.log (jsonData.links[8].rel)\r",
+									"\r",
+									"\r",
+									"pm.environment.set(\"documentation\", jsonData.links[2].rel);\r",
+									"\r",
+									"pm.environment.set(\"health\", jsonData.links[4].rel);\r",
+									"pm.environment.set(\"jsonrpc\", jsonData.links[5].rel);\r",
+									"\r",
+									"pm.environment.set(\"oauth2\", jsonData.links[6].rel);\r",
+									"pm.environment.set(\"whoami\", jsonData.links[7].rel);\r",
+									"\r",
+									"pm.environment.set(\"about\", jsonData.links[8].rel);\r",
+									"\r",
+									"pm.test(\"Status code should be 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Status code should have OK string\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									" var jsonData = pm.response.json();\r",
+									"   console.log (jsonData.apiVersion)\r",
+									"console.log (jsonData.title)\r",
+									"console.log (jsonData.paymentCurrency)\r",
+									"console.log (jsonData.categories)\r",
+									"console.log (jsonData.scopes)\r",
+									"console.log (jsonData.links)\r",
+									" console.log (jsonData.links[0].rel)\r",
+									"console.log (jsonData.links[0].href)\r",
+									" console.log (jsonData.links[1].rel)\r",
+									"console.log (jsonData.links[1].href)\r",
+									" console.log (jsonData.links[2].rel)\r",
+									"console.log (jsonData.links[2].href)\r",
+									"console.log (jsonData.links[3].rel)\r",
+									"console.log (jsonData.links[3].href)\r",
+									"console.log (jsonData.links[4].rel)\r",
+									"console.log (jsonData.links[4].href)\r",
+									"console.log (jsonData.links[5].rel)\r",
+									"console.log (jsonData.links[5].href)\r",
+									"console.log (jsonData.links[6].rel)\r",
+									"console.log (jsonData.links[6].href)\r",
+									"console.log (jsonData.links[7].rel)\r",
+									"console.log (jsonData.links[7].href)\r",
+									"console.log (jsonData.links[8].rel)\r",
+									"console.log (jsonData.links[8].href)\r",
+									"  console.log (jsonData.apps)\r",
+									"  \r",
+									"\r",
+									"\r",
+									"\r",
+									" pm.test(\"Confirm that the version is 6.3.8.0\", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.apiVersion).to.eql(\"6.3.8.0\");\r",
+									"})\r",
+									" pm.test(\"Confirm that the title is Fusio\", function () {\r",
+									"\r",
+									"    pm.expect(jsonData.title).to.eql(\"Fusio\");\r",
+									"   }); \r",
+									"   \r",
+									"     pm.test(\"Confirm that the paymentCurrency is EUR\", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.paymentCurrency).to.eql(\"EUR\");\r",
+									"\r",
+									"});\r",
+									"pm.test(\"Confirm that  authorization\",\r",
+									"        \"system\",\r",
+									"        \"consumer\",\r",
+									"        \"backend\",\r",
+									"        \"default are all under categories \", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.categories).to.eql(\"authorization\",\r",
+									"        \"system\",\r",
+									"        \"consumer\",\r",
+									"        \"backend\",\r",
+									"        \"default\");\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Confirm that the apps contains \", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.scopes).to.eql([\"default\"]);\r",
+									"\r",
+									"});\r",
+									"   \r",
+									" pm.test(\"confirm that link.0. rel contains root\", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.links[0].rel).to.eql(\"root\");\r",
+									"})\r",
+									"pm.test(\"confirm that link 0. href contains https://demo.fusio-project.org/\", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.links[0].href).to.eql(\"https://demo.fusio-project.org/\");\r",
+									"})\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"confirm that link.1. rel contains openapi\", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.links[1].rel).to.eql(\"openapi\");\r",
+									"    })\r",
+									"pm.test(\"confirm that link 1. href contains https://demo.fusio-project.org/system/export/openapi/*/*\", function () {\r",
+									"    \r",
+									" pm.expect(jsonData.links[1].href).to.eql(\"https://demo.fusio-project.org/system/export/openapi/*/*\");\r",
+									"})\r",
+									"\r",
+									"pm.test(\"confirm that link 2 rel contains documentation\", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.links[2].rel).to.eql(\"documentation\");\r",
+									"})\r",
+									"pm.test(\"confirm that link 2 . href contains https://demo.fusio-project.org/system/doc\", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.links[2].href).to.eql(\"https://demo.fusio-project.org/system/doc\");\r",
+									"})\r",
+									"\r",
+									"pm.test(\"confirm that link 3 rel contains route\", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.links[3].rel).to.eql(\"route\");\r",
+									"})\r",
+									"\r",
+									"pm.test(\"confirm that link 3 . href contains https://demo.fusio-project.org/system/route\", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.links[3].href).to.eql(\"https://demo.fusio-project.org/system/route\");\r",
+									"})\r",
+									"\r",
+									"pm.test(\"confirm that link 4 rel contains health\", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.links[4].rel).to.eql(\"health\");\r",
+									"})\r",
+									"pm.test(\"confirm that link 4 . href contains https://demo.fusio-project.org/system/health\", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.links[4].href).to.eql(\"https://demo.fusio-project.org/system/health\");\r",
+									"})\r",
+									"\r",
+									"pm.test(\"confirm that link 5 rel contains jsonrpc\", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.links[5].rel).to.eql(\"jsonrpc\");\r",
+									"})\r",
+									"pm.test(\"confirm that link 4 . href contains https://demo.fusio-project.org/system/jsonrpc\", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.links[5].href).to.eql(\"https://demo.fusio-project.org/system/jsonrpc\");\r",
+									"})\r",
+									"\r",
+									"pm.test(\"confirm that link 6 rel contains oauth2\", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.links[6].rel).to.eql(\"oauth2\");\r",
+									"})\r",
+									"pm.test(\"confirm that link 6 . href contains https://demo.fusio-project.org/authorization/token\", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.links[6].href).to.eql(\"https://demo.fusio-project.org/authorization/token\");\r",
+									"})\r",
+									"\r",
+									"pm.test(\"confirm that link 7 rel contains whoami\", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.links[7].rel).to.eql(\"whoami\");\r",
+									"})\r",
+									"pm.test(\"confirm that link 7 . href contains https://demo.fusio-project.org/authorization/whoami\", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.links[7].href).to.eql(\"https://demo.fusio-project.org/authorization/whoami\");\r",
+									"})\r",
+									"\r",
+									"pm.test(\"confirm that link 8 rel contains about\", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.links[8].rel).to.eql(\"about\");\r",
+									"})\r",
+									"pm.test(\"confirm that link 8 . href contains https://www.fusio-project.org\", function () {\r",
+									"    \r",
+									"    pm.expect(jsonData.links[8].href).to.eql(\"https://www.fusio-project.org\");\r",
+									"})\r",
+									" \r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlDemo}}/index.php/",
+							"host": [
+								"{{baseUrlDemo}}"
+							],
+							"path": [
+								"index.php",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Entry per ID",
+			"item": [
+				{
+					"name": "Get entry per ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlDemo}}/index.php/todo/?todo_id=2",
+							"host": [
+								"{{baseUrlDemo}}"
+							],
+							"path": [
+								"index.php",
+								"todo",
+								""
+							],
+							"query": [
+								{
+									"key": "todo_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Books",
+			"item": [
+				{
+					"name": "Get Books- valid book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"console.log(response[0].id);\r",
+									"\r",
+									"pm.environment.set(\"TheRussian\", response[0].id);\r",
+									"\r",
+									"console.log(response[1].id);\r",
+									"\r",
+									"pm.environment.set(\"Just as I Am\", response[1].id);\r",
+									"\r",
+									"console.log(response[2].id);\r",
+									"\r",
+									"pm.environment.set(\"The Vanishing Half\", response[2].id);\r",
+									"\r",
+									"console.log(response[3].id);\r",
+									"\r",
+									"pm.environment.set(\"The Midnight Library\", response[3].id);\r",
+									"\r",
+									"console.log(response[4].id);\r",
+									"\r",
+									"pm.environment.set(\"Untamed\", response[4].id);\r",
+									"\r",
+									"\r",
+									"console.log(response[5].id);\r",
+									"\r",
+									"pm.environment.set(\"Viscount Who Loved Me\", response[5].id);\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/books?type =non fiction",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "fiction",
+									"disabled": true
+								},
+								{
+									"key": "type ",
+									"value": "non fiction"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Place a Book order",
+			"item": [
+				{
+					"name": "Place a book order using a valid id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code should be  201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code should have a name string\", function () {\r",
+									"    pm.response.to.have.status(\"Created\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"const OrderID = pm.response.json();\r",
+									" \r",
+									"console.log(OrderID.orderId);\r",
+									"pm.environment.set(\"OrderId\", OrderID.orderId);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token }}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"bookId\":{{TheRussian}},\n    \"customerName\": \"John chizi Aholu\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place a book order using a valid id Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code should be  201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code should have a name string\", function () {\r",
+									"    pm.response.to.have.status(\"Created\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"const OrderID = pm.response.json();\r",
+									" \r",
+									"console.log(OrderID.orderId);\r",
+									"pm.environment.set(\"ORDerId\", OrderID.orderId);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token }}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"bookId\":{{Untamed}},\n    \"customerName\": \"John Aholu\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place a book order using an invalid order id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code should be  422\", function () {\r",
+									"    pm.response.to.have.status(422);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code should have  name string as Unprocessable Entity\", function () {\r",
+									"    pm.response.to.have.status(\"Unprocessable Entity\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body should matche string as Unprocessable Entity\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Unprocessable Entity\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token }}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"bookId\":{{TheRussians}},\n    \"customerName\": \"John chizi Aholu\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Place a book order using no bookid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code should be  422\", function () {\r",
+									"    pm.response.to.have.status(422);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code should have  name string as Unprocessable Entity\", function () {\r",
+									"    pm.response.to.have.status(\"Unprocessable Entity\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body should matche string as Unprocessable Entity\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Unprocessable Entity\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token }}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"bookId\":,\n    \"customerName\": \"John chizi Aholu\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get all orders",
+			"item": [
+				{
+					"name": "Get all orders",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "03c5abfe090876ab74a2a2ac4c079174a35fd88c9b88cd2164ff4b9d56c31d6c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get an Order",
+			"item": [
+				{
+					"name": "Get an order using a valid order  id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code should 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name have an OK string\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"pm.test(\"id\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"j__eM1c28BEvoZDAHYOBb\");\r",
+									"});\r",
+									"pm.test(\"bookId should be  1\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(1);\r",
+									"});\r",
+									"pm.test(\"customerName should be John chizi Aholu\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"John chizi Aholu\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token }}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders/:orderId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "{{OrderId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an order using a valid order  id Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code should 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name have an OK string\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"pm.test(\"id\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"j__eM1c28BEvoZDAHYOBb\");\r",
+									"});\r",
+									"pm.test(\"bookId should be  1\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(1);\r",
+									"});\r",
+									"pm.test(\"customerName should be John chizi Aholu\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"John chizi Aholu\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token }}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders/:orderId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "{{ORDerId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an order using an invalid order ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code should 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name  string should be Not Found\", function () {\r",
+									"    pm.response.to.have.status(\"Not Found\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\" body should contain an error:No order with id {{OrderIdk}\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"No order with id {{OrderIdk}\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token }}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders/:orderId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "{{OrderIdk}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an order using no order ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code should 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code should have Not found as string name\", function () {\r",
+									"    pm.response.to.have.status(\"Not Found\");\r",
+									"});\r",
+									"pm.test(\" body should contain an error: No order with id :orderId \", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"No order with id :orderId\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token }}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders/:orderId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete an order",
+			"item": [
+				{
+					"name": "Delete an order using a valid order ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string OK\", function () {\r",
+									"    pm.response.to.have.status(\"No Content\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token }}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders/:orderId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "{{ORDerId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an order an invalid order id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name should have a string written Not Found \", function () {\r",
+									"    pm.response.to.have.status(\"Not Found\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token }}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders/:orderId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "{{ORDerIddf}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an order no order id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name should have a string written Not Found \", function () {\r",
+									"    pm.response.to.have.status(\"Not Found\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token }}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders/:orderId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "API Token",
+			"item": [
+				{
+					"name": "Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"Token\", \"5adac83cec2323789d7379e8e5c4f47fec4b2f662acc7fbd8416c98532875ae4\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clientName\": \"jessey\",\r\n    \"clientEmail\": \"jeose@gmail.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api-clients",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api-clients"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
