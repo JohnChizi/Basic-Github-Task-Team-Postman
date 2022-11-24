@@ -1,0 +1,141 @@
+{
+	"id": "90727a08-06a6-48e7-b284-fafb716f5efb",
+	"name": "API Response Extraction",
+	"values": [
+		{
+			"key": "baseUrlDemo",
+			"value": "https://demo.fusio-project.org",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "baseUrl",
+			"value": "https://simple-books-api.glitch.me",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "Token ",
+			"value": "7c5b68a312ef653c106ca4fe9e6b28d86c34e325c466e106a4dad7b539f6cec8",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "variable_key",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "root",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "openapi",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "documentation",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "health",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "jsonrpc",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "oauth2",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "whoami",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "about",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "TheRussian",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "The Vanishing Half",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "The Midnight Library",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Just as I Am",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Untamed",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Viscount Who Loved Me",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "OrderId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "ORDerId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Token",
+			"value": "",
+			"type": "any",
+			"enabled": false
+		},
+		{
+			"key": "Token",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2022-11-24T22:49:05.497Z",
+	"_postman_exported_using": "Postman/10.5.1"
+}
